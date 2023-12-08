@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FO Registration</title>
+	<link rel="icon" type="food" href="/src/food.png"/>
+	<link rel="stylesheet" href="/src/styles/formsStyle.css">
+</head>
+
+<body>
+    <h1>Registration</h1>
+    <form>
+
+        <div>
+            <label for="Username">Username:</label>
+            <input type="text" id="Username" name="username" 
+            placeholder="idyllicP" required>
+        </div>
+
+        <div>
+            <label for="Password">Password:</label>
+            <input type="password" id="Password" name="password" 
+            placeholder="Password10102" required>
+        </div>
+    </form>
+    <h1>Company Information</h1>
+    <form>
+        <div>
+            <label for="CompanyName">Company Name:</label>
+            <input type="text" id="CompanyName" name="CompanyName" 
+            placeholder="Food Oasis" required>
+        </div>
+
+        <div class = "column">
+        <div class = "left">
+            <label for="CompanyID">Company Control Number</label>
+            <input type="number" id="CompanyID" name="CompanyID" 
+            placeholder="22120103" maxlength="8" required>
+        </div>
+
+        <div class = "right">
+          <label for="categoryFilter">Select Food Category:</label>
+          <select id="categoryFilter" class="category-select">
+              <option value="foodbank">Food Banks</option>
+              <option value="supermarket">Supermarkets</option>
+              <option value="fastfood">Fast Food</option>
+              <option value="farmers_market">Farmers Market</option>
+              <option value="groceryStore">Grocery Store</option>
+          </select>
+        </div>
+      </div>
+
+        <div>
+            <label for="address">Address:</label>
+            <input type="address" id="Address" name="Address" 
+            placeholder="123 Main St" required>
+        </div>
+
+        <div class = "column">
+          <div class = "left">
+            <label for="city">City:</label>
+            <input type="text" id="City" name="City"
+            placeholder="Atlanta"   required>
+        </div>
+
+        <div class = "right">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state"
+            placeholder="Georgia" required>
+        </div>
+      </div>
+
+        <div class="left">
+          <Label>Zip Code</Label>
+          <input type="text" pattern="\d{5}" title="Five digit zip code"
+          maxlength="5"
+          id = postalcode placeholder="30044" />
+        </div>
+
+        <div>
+            <label for="tel">Phone (optional):</label>
+            <input type="tel" id="tel" name="tel"
+            placeholder="888-888-8888">
+        </div>
+
+        <div>
+            <label for="email">Email (optional):</label>
+            <input type="email" id="email" name="email"
+            placeholder="something@gmail.com">
+        </div>
+    </form>
+    <br>
+ 
+    <button id="submit-btn" onclick="submitBtm()">SUBMIT</button>
+<br><br>
+     
+          
+<script src="/src/frontJS/forms.js" ></script>
+
+
+<script>
+//1AJAX function for creating a new user
+   
+
+  // AJAX function for creating a new user
+  const createUser = (data) => {
+    return fetch('/users', { // Modify the endpoint URL for creating a user
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all users
+  const getAllUsers = () => {
+    return fetch('/users') // Modify the endpoint URL for getting all users
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a user
+  const updateUser = (id, data) => {
+    return fetch(`/users/${id}`, { // Modify the endpoint URL for updating a user
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a user
+  const deleteUser = (id) => {
+    return fetch(`/users/${id}`, { // Modify the endpoint URL for deleting a user
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+//2AJAX function for creating a new food-source
+  
+  
+  // AJAX function for creating a new food source
+  const createFoodSource = (data) => {
+    return fetch('/food-sources', { // Adjust the endpoint to your server route handling food sources
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all food sources
+  const getAllFoodSources = () => {
+    return fetch('/food-sources') // Adjust the endpoint to your server route handling food sources
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a food source
+  const updateFoodSource = (id, data) => {
+    return fetch(`/food-sources/${id}`, { // Adjust the endpoint to your server route handling food sources
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a food source
+  const deleteFoodSource = (id) => {
+    return fetch(`/food-sources/${id}`, { // Adjust the endpoint to your server route handling food sources
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+ //3AJAX function for creating a new fooditem
+ // AJAX function for creating a new food item
+ const createFoodItem = (data) => {
+    return fetch('/fooditems', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all food items
+  const getAllFoodItems = () => {
+    return fetch('/fooditems')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a food item
+  const updateFoodItem = (upc, data) => {
+    return fetch(`/fooditems/${upc}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a food item
+  const deleteFoodItem = (upc) => {
+    return fetch(`/fooditems/${upc}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };    //3 
+  
+ //4AJAX function for creating a new supplier
+ // AJAX function for creating a new supplier
+ const createSupplier = (data) => {
+    return fetch('/suppliers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all suppliers
+  const getAllSuppliers = () => {
+    return fetch('/suppliers')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a supplier
+  const updateSupplier = (id, data) => {
+    return fetch(`/suppliers/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a supplier
+  const deleteSupplier = (id) => {
+    return fetch(`/suppliers/${id}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+ //5AJAX function for creating a new userfavorite
+ // AJAX function for creating a new user favorite
+ const createUserFavorite = (data) => {
+    return fetch('/userfavorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all user favorites
+  const getAllUserFavorites = () => {
+    return fetch('/userfavorites')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a user favorite
+  const updateUserFavorite = (userID, sourceID, data) => {
+    return fetch(`/userfavorites/${userID}/${sourceID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a user favorite
+  const deleteUserFavorite = (userID, sourceID) => {
+    return fetch(`/userfavorites/${userID}/${sourceID}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };    
+
+//6AJAX function for creating a new session
+// AJAX function for creating a new session
+const createSession = (data) => {
+    return fetch('/sessions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all sessions
+  const getAllSessions = () => {
+    return fetch('/sessions')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a session
+  const updateSession = (id, data) => {
+    return fetch(`/sessions/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a session
+  const deleteSession = (id) => {
+    return fetch(`/sessions/${id}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => 
+  
+  {
+   //7AJAX function for creating a new suppliercontact
+// AJAX function for creating a new supplier contact
+const createSupplierContact = (data) => {
+    return fetch('/suppliercontacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all supplier contacts
+  const getAllSupplierContacts = () => {
+    return fetch('/suppliercontacts')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a supplier contact
+  const updateSupplierContact = (id, data) => {
+    return fetch(`/suppliercontacts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a supplier contact
+  const deleteSupplierContact = (id) => {
+    return fetch(`/suppliercontacts/${id}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };        console.error('Error:', error);
+  });
+////8AJAX function for creating a new sourceinventory  
+// AJAX function for creating a new source inventory entry
+const createSourceInventory = (data) => {
+    return fetch('/sourceinventory', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to retrieve all source inventory entries
+  const getAllSourceInventory = () => {
+    return fetch('/sourceinventory')
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data); // Log or handle retrieved data
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to update a source inventory entry
+  const updateSourceInventory = (id, data) => {
+    return fetch(`/sourceinventory/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
+  // AJAX function to delete a source inventory entry
+  const deleteSourceInventory = (id) => {
+    return fetch(`/sourceinventory/${id}`, {
+      method: 'DELETE',
+    })
+      .then(handleErrors)
+      .then((response) => {
+        console.log(response); // Log or handle success response
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };  };
+
+
+  //This is called by the submit button on the supplier form
+  function submitSellerForm()
+  {
+    //Get Supplier values from form that should go in the Supplier table and send it to the Supplier AJAX function createSupplier(data from form)
+    //call ajax
+
+
+    //Get SupplierContact values from form that should go in the SupplierContact table and send it to the SupplierContact AJAX function createSupplierContact(data from form)
+  }
+
+</script>
+	
+</body>
+</html>

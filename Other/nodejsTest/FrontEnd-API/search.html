@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address and City Search</title>
+</head>
+<body>
+    <form id="search-form">
+        <label for="search-input">Search by Address or City:</label>
+        <input type="text" id="search-input" name="search-input" placeholder="Enter address or city">
+        <button type="button" id="search-button">Search</button>
+    </form>
+
+    <div id="search-results">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        // JavaScript to handle the search functionality
+        document.getElementById('search-button').addEventListener('click', function() {
+            const searchTerm = document.getElementById('search-input').value;
+            // You can implement your search logic here and display results in the 'search-results' div
+            // For this example, let's just display the search term.
+            document.getElementById('search-results').innerHTML = `You searched for: ${searchTerm}`;
+        });
+    </script>
+</body>
+</html>

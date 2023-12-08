@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Locator</title>
+    <style>
+        /* Add basic styling for layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #header {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        #main-content {
+            display: flex;
+            flex: 1;
+        }
+
+        #map {
+            flex: 2;
+            height: 100%;
+        }
+
+        #restaurant-list {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>Restaurant Locator</h1>
+        <div>
+            <label for="search-input">Search by Zip Code:</label>
+            <input type="text" id="search-input" placeholder="Enter zip code">
+            <button id="search-button">Search</button>
+        </div>
+    </header>
+
+    <div id="main-content">
+        <div id="restaurant-list">
+            <!-- Restaurant locations will be displayed here -->
+        </div>
+
+        <div id="map">
+            <!-- The map will be displayed here using JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        let map;
+        let restaurantMarkers = [];
+
+        // Sample restaurant data with zip codes
+        const restaurantLocations = [
+            { name: "Restaurant 1", address: "123 Main St, New York", zip: "10001", lat: 40.71, lng: -74.01 },
+            { name: "Restaurant 2", address: "456 Elm St, New York", zip: "10002", lat: 40.72, lng: -74.02 },
+            // Add more restaurants as needed
+        ];
+
+        // Initialize the map
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 40.7128, lng: -74.0060 }, // Initial map center (e.g., New York City)
+                zoom: 12, // Initial zoom level
+            });
+
+            // Display restaurant markers on the map
+            restaurantLocations.forEach((restaurant) => {
+                const marker = new google.maps.Marker({
+                    position: { lat: restaurant.lat, lng: restaurant.lng },
+                    map: map,
+                    title: restaurant.name,
+                });
+
+                // Create an info window for each marker
+                const infowindow = new google.maps.InfoWindow({
+                    content: `<strong>${restaurant.name}</strong><br>${restaurant.address}`,
+                });
+
+                marker.addListener('click', () => {
+                    infowindow.open(map, marker);
+                });
+
+                restaurantMarkers.push(marker);
+            });
+
+            // Display all restaurants by default
+            displayRestaurantList(restaurantLocations);
+        }
+
+        // Function to display the list of restaurants
+        function displayRestaurantList(restaurants) {
+            const restaurantList = document.getElementById('restaurant-list');
+            restaurantList.innerHTML = '';
+
+            restaurants.forEach((restaurant) => {
+                const restaurantItem = document.createElement('div');
+                restaurantItem.innerHTML = `<strong>${restaurant.name}</strong><br>${restaurant.address}`;
+                restaurantList.appendChild(restaurantItem);
+            });
+        }
+
+        // Add event listener for the search button
+        document.getElementById('search-button').addEventListener('click', function () {
+            const zipCode = document.getElementById('search-input').value;
+
+            // Filter and display restaurants based on the provided zip code
+            const restaurantsInArea = restaurantLocations.filter(restaurant => restaurant.zip === zipCode);
+            displayRestaurantList(restaurantsInArea);
+
+            // Find the center coordinates for the provided zip code and update the map
+            if (restaurantsInArea.length > 0) {
+                const centerRestaurant = restaurantsInArea[0];
+                map.setCenter({ lat: centerRestaurant.lat, lng: centerRestaurant.lng });
+                map.setZoom(12); // You can adjust the zoom level
+            } else {
+                alert('No restaurants found in the provided zip code.');
+            }
+        });
+    </script>
+
+    <!-- Include the Google Maps JavaScript API script here, with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMsIiZGEx6nc3-VW5Tohyny8BGd_83PBg&callback=initMap" async defer></script>
+</body>
+</html>

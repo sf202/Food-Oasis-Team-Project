@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Oasis Information</title>
+    
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        h2 {
+            margin-top: 15px;
+        }      
+    </style>
+</head>
+<body>
+    <h1>Company Information</h1>
+    <form action="FormData.php" method="post">
+        <div>
+            <label for="position">Company Name:</label>
+            <input type="text" id="position" name="position" autofocus required>
+        </div>
+
+        <div>
+            <label for="CompanyID">Company ID:</label>
+            <input type="text" id="CompanyID" name="CompanyID" required>
+        </div>
+
+        <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address"></textarea>
+        </div>
+
+        <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+
+        <div>
+            <label for="zipcode">Zipcode:</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+        </div>
+
+        <div>
+            <label for="tel">Phone (optional):</label>
+            <input type="tel" id="tel" name="tel">
+        </div>
+
+        <div>
+            <label for="email">Email (optional):</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <p>Do you have more than one location?</p>
+        <div>
+            <input type="checkbox" id="multiple_locations" name="multiple_locations" value="yes">
+            <label for="multiple_locations">Yes</label>
+        </div>
+
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>

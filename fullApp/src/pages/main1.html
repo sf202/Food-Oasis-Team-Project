@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Food oasis</title>
+	<link rel="icon" type="food" href="./src/food.png"/>
+    <link rel="stylesheet" href="/src/styles/style.css">
+</head>
+<body><h1>Food Oasis</h1>
+   
+  <div class="leftdiv">  
+  <div class="dropdown">
+  <button class="dropbtn">Search food menu </button>
+  <div class="dropdown-content">
+    <a href="#">Fresh fruits and veggies </a>
+    <a href="#">Fresh fruit juice </a>
+    <a href="#">Fresh food and meat</a>
+    <a href="#">Freshly baked food</a>
+  </div>
+  </div> 
+  </div>
+    
+    <label for="zip-code"></label>
+        <input type="text" id="zip-code" placeholder="Zip code">
+        <button onclick="searchZipCode()">Search</button></br></br>
+	    <button onclick="useMyLocation()">Use My Location</button></br></br>
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+	
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+	<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13305.532735059234!2d-84.23841605!3d33.51742169999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1698670858461!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+    </br></br>
+	
+	<button type="submit" id="seller" value="Submit">Are you a seller?</button>
+
+    
+    <!-- Include the Google Maps JavaScript API script here, with your API key -->
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMsIiZGEx6nc3-VW5Tohyny8BGd_83PBg&callback=initMap" async defer></script> -->
+<!--
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMsIiZGEx6nc3-VW5Tohyny8BGd_83PBg&callback=initMap"> </script> -->
+
+<script src="/src/frontJS/main.js"></script> 
+
+    
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Screen</title>
+    <style>
+        /* Add basic styling for layout */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #home-content {
+            text-align: center;
+        }
+
+        #search-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #search-button {
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="home-content">
+        <h1>Welcome to Restaurant Locator</h1>
+        <p>Find restaurants near you</p>
+        <input type="text" id="search-input" placeholder="Enter address or zip code">
+        <button id="search-button">Search</button>
+        <p>Or</p>
+        <button id="current-location-button">Use My Current Location</button>
+    </div>
+</body>
+</html>
