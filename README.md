@@ -59,7 +59,7 @@
 -	Facilitation of the seamless incorporation of supplier registration data into the designated database, guaranteeing data accuracy, integrity, and security.
 
 # Technical Platforms :
-- Frontend HTML/CSS Javascript
-- Backend Javascript (NodeJS) 
-- Database MySQL
+- Frontend: HTML/CSS Javascript
+- Backend: Javascript (NodeJS) 
+- Database: MySQL
 
