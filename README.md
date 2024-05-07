@@ -1,7 +1,9 @@
 # Simple interface using GPS to find fresh food sources
 Users looking for food do not need to register, but may have to for GPS use…
+
 Suppliers will need to register, like eBay seller, but not input any products.
 GPS connections are focus.
+## Functions 
 1. Food Selection Interface:
    
 - Implementation of a dropdown menu labeled "What type of food?" allowing users to filter markers based on the food source.
@@ -54,4 +56,9 @@ GPS connections are focus.
 12.	Supplier Registration Data Handling:
     
 -	Facilitation of the seamless incorporation of supplier registration data into the designated database, guaranteeing data accuracy, integrity, and security.
+
+# Technical Platforms :
+- Frontend HTML/CSS Javascript
+- Backend Javascript (NodeJS) 
+- Database MySQL
 
