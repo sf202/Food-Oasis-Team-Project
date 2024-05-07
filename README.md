@@ -4,7 +4,7 @@
 - Simple UI interface
 - Using GPS to find fresh food sources
 
-## Functions 
+## Functions :
 1. Food Selection Interface:
    
 - Implementation of a dropdown menu labeled "What type of food?" allowing users to filter markers based on the food source.
