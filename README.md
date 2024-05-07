@@ -1,5 +1,5 @@
 # Simple interface using GPS to find fresh food sources
-- finds fresh food sources, a comprehensive list!
+- Build Full Stack project that finds fresh food sources, a comprehensive list!
 - location &  convenience 
 - Simple UI interface
 - Using GPS to find fresh food sources
