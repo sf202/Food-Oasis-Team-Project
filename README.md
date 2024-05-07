@@ -1,8 +1,9 @@
 # Simple interface using GPS to find fresh food sources
-Users looking for food do not need to register, but may have to for GPS use…
+- finds fresh food sources, a comprehensive list!
+- location &  convenience 
+- Simple UI interface
+- Using GPS to find fresh food sources
 
-Suppliers will need to register, like eBay seller, but not input any products.
-GPS connections are focus.
 ## Functions 
 1. Food Selection Interface:
    
