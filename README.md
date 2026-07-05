@@ -1,7 +1,10 @@
 # Simple interface using GPS to find fresh food sources
 ▪	Developed a Google Maps program to visualize a set of data that describes locations of charities in Atlanta.
+
 ▪	Utilized SQL queries to retrieve the location row in the Google Fusion Table and place a marker on the map.
+
 ▪	Designed directions button and an address text field using JavaScript and HMTL, allowing user to enter a street address and search for information within a certain distance.
+
 ▪	Implemented a spatial query feature which allow users to search for data within a certain radius.
 
 ## Functions :
